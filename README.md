@@ -1,29 +1,28 @@
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
-## Gambler NPC
+## 赌徒 NPC
 - Latest build status with azerothcore: [![Build Status](https://github.com/azerothcore/mod-npc-gambler/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/azerothcore/mod-npc-gambler)
 
 _This module was created for [StygianCore](https://rebrand.ly/stygiancoreproject). A World of Warcraft 3.3.5a Solo/LAN repack by StygianTheBest | [GitHub](https://rebrand.ly/stygiangithub) | [Website](https://rebrand.ly/stygianthebest))_
 _This module has now being ported to AzerothCore by gtao725 (https://github.com/gtao725/)._
 
-### Description
+### 描述
 
-Hey, the name's Skinny. You feelin' lucky? This NPC will allow players to gamble copper, silver, or gold as
-defined in the configuration. It's a nice way for players to make a little extra coin.
+嘿，我叫瘦子。你简直幸运吗?这个NPC将允许玩家在配置中定义的铜、银或金上赌博。这是玩家赚点外快的好方法。
 
 - Config:
-    - Set bet and jackpot amounts
-    - Enable/Disable coin type (gold, silver, copper)
-    - Set coin type to gamble
-- A roll of 50 or higher wins double the bet!
-- A roll of less than 50 loses double the bet!
-- A roll of 100 within the first 10 rolls hits the jackpot!
-- The jackpot can only be hit in the first 10 rolls of each session to discourage spam.
-- A little help is given to players losing 5 rolls in a row.
+    - 设置赌注和头奖金额
+    - 启用/禁用硬币类型(金，银，铜)
+    - 设置硬币类型为赌博
+- 掷出50或更高点数将赢得双倍赌注!
+- 少于50的输掉双倍的赌注!
+- 前10次掷中100分就中头奖了!
+- 为了打击垃圾邮件，每个会话的前10卷只能中头奖。
+- 对于连续输掉5次的玩家会有一些帮助。
 
 ### To-Do
 
-- Track and display jackpot winners/dates.
-- Create lottery from player losses.
+- 和显示头奖得主/日期。
+- 从玩家的损失中创建彩票。
 
 ### Data
 
