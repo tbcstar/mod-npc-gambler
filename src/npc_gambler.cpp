@@ -163,7 +163,7 @@ public:
     uint32 WinAmount = 0;
     uint32 PlayerMoney = 0;
     uint32 JackpotAmount = 0;
-    string MoneyTypeText = "Electrum";
+    std::string MoneyTypeText = "Electrum";
 
     // Bets
     uint32 Bets = 0;		// # of bets placed
@@ -234,13 +234,13 @@ public:
         }
 
         // Main Menu
-        messageJackpot << "把你的选择。今天的大奖 " << Jackpot << " " << MoneyTypeText << ".";
+        messageJackpot << "快下注把兄弟。 今天的头奖是 " << Jackpot << " " << MoneyTypeText << "。";
         messageCoinType << "硬币类型: " << MoneyTypeText;
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, messagePocket.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TRAINER, "那么，这个游戏是如何运作的呢?", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, messageCoinType.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, messageJackpot.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
-        player->SEND_GOSSIP_MENU(601020, creature->GetGUID());
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, messagePocket.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "那么，这个游戏是如何运作的呢?", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
+        AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, messageCoinType.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
+        AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, messageJackpot.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+        SendGossipMenuFor(player, 601020, creature->GetGUID());
         return true;
     }
 
@@ -278,20 +278,20 @@ public:
             Option3 << Bet3 << " " << MoneyTypeText;
             Option4 << Bet4 << " " << MoneyTypeText;
             Option5 << Bet5 << " " << MoneyTypeText;
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, Option1.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, Option2.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 4);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, Option3.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 5);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, Option4.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 6);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, Option5.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 7);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, " 返回", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
+            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, Option1.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
+            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, Option2.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 4);
+            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, Option3.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 5);
+            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, Option4.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 6);
+            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, Option5.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 7);
+            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, " 返回", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
             player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
             break;
 
             // Rules Menu
         case GOSSIP_ACTION_INFO_DEF + 2:
             messageInstruct << "规则很简单 " << player->GetName() << ".. 如果你投的点数超过50，你就会赢得双倍的赌注。否则，你输掉两倍的赌注。掷100就能赢得头奖。祝你好运！";
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, messageInstruct.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "好吧，瘦子，我要去赌一把。", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+            AddGossipItemFor(player, GOSSIP_ICON_CHAT, messageInstruct.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
+            AddGossipItemFor(player, GOSSIP_ICON_TALK, "好了，小鬼，我要去赌一把了。", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
             player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
             break;
 
@@ -325,22 +325,22 @@ public:
             CoinCopper << "铜币";
             CoinSilver << "银币";
             CoinGold << "金币";
-            messageCoins << "你在赌什么 " << player->GetName() << "？";
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, messageCoins.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
+            messageCoins << "你拿什么赌博 " << player->GetName() << "?";
+            AddGossipItemFor(player, GOSSIP_ICON_CHAT, messageCoins.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
 
             if (EnableCopper)
             {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, CoinCopper.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 10);
+                AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, CoinCopper.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 10);
             }
 
             if (EnableSilver)
             {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, CoinSilver.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 11);
+                AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, CoinSilver.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 11);
             }
 
             if (EnableGold)
             {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_MONEY_BAG, CoinGold.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 12);
+                AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, CoinGold.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 12);
             }
             player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
 
@@ -418,7 +418,7 @@ public:
             player->AddAura(228, player);	// Polymorph Chicken
             player->AddAura(5782, player);	// Fear
             creature->MonsterWhisper(messageTaunt.str().c_str(), player);
-            player->CLOSE_GOSSIP_MENU();
+            CloseGossipMenuFor(player);
             player->PlayDirectSound(5960); // Goblin Pissed
             creature->HandleEmoteCommand(EMOTE_ONESHOT_RUDE);
             return false;
@@ -437,7 +437,7 @@ public:
             messageNotice << "WOWZERS " << player->GetName() << "!!你中头彩了!这是你的钱包 " << Jackpot << " " << MoneyTypeText << "！";
             creature->MonsterWhisper(messageAction.str().c_str(), player);
             player->GetSession()->SendAreaTriggerMessage("%s", messageNotice.str().c_str());
-            player->CLOSE_GOSSIP_MENU();
+            CloseGossipMenuFor(player);
             creature->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
             return true;
         }
