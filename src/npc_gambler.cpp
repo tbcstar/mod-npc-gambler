@@ -145,7 +145,7 @@ public:
         // Announce Module
         if (GamblerNPCAnnounce)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("服务器已启用 |cff4CFF00赌博NPC |r模块。");
+            ChatHandler(player->GetSession()).SendSysMessage("服务器已启用 |cff4CFF00博彩服务 |r模块。");
         }
     }
 };
@@ -226,11 +226,11 @@ public:
 
         // Clean up the display if using Copper or Silver
         if (Pocket >= 100000 && (MoneyType == 1 || MoneyType == 2)) {
-            messagePocket << "你好 " << player->GetName() << "。 我看你有很多 " << MoneyTypeText << " to gamble.";
+            messagePocket << "您好 " << player->GetName() << "。 我看您有很多 " << MoneyTypeText << " 来赌一把。";
         } else if (Pocket >= 10000000 && MoneyType == 3) {
-            messagePocket << "你好 " << player->GetName() << "。 我看你有很多 " << MoneyTypeText << " to gamble.";
+            messagePocket << "您好 " << player->GetName() << "。 我看您有很多 " << MoneyTypeText << " 来赌一把。";
         } else {
-            messagePocket << "你好 " << player->GetName() << "。 我看到你有 " << PlayerMoney << " " << MoneyTypeText << " to gamble.";
+            messagePocket << "您好 " << player->GetName() << "。 我看到您有 " << PlayerMoney << " " << MoneyTypeText << " 来赌一把。";
         }
 
         // Main Menu
@@ -289,7 +289,7 @@ public:
 
             // Rules Menu
         case GOSSIP_ACTION_INFO_DEF + 2:
-            messageInstruct << "规则很简单 " << player->GetName() << ".. 如果你投的点数超过50，你就会赢得双倍的赌注。否则，你输掉两倍的赌注。掷100就能赢得头奖。祝你好运！";
+            messageInstruct << "规则很简单 " << player->GetName() << ".. 如果您投的点数超过50，您就会赢得双倍的赌注。否则，您输掉两倍的赌注。掷100就能赢得头奖。祝您好运！";
             AddGossipItemFor(player, GOSSIP_ICON_CHAT, messageInstruct.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 14);
             AddGossipItemFor(player, GOSSIP_ICON_TALK, "好了，小鬼，我要去赌一把了。", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
             player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
@@ -325,7 +325,7 @@ public:
             CoinCopper << "铜币";
             CoinSilver << "银币";
             CoinGold << "金币";
-            messageCoins << "你拿什么赌博 " << player->GetName() << "?";
+            messageCoins << "您拿什么赌博 " << player->GetName() << "?";
             AddGossipItemFor(player, GOSSIP_ICON_CHAT, messageCoins.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 8);
 
             if (EnableCopper)
@@ -404,7 +404,7 @@ public:
         if (Losses >= 5 && Roll < 50)
         {
             std::ostringstream messageHelp;
-            messageHelp << "幸运女神今晚不站在你这边 " << player->GetName() << "。";
+            messageHelp << "幸运女神今晚不站在您这边 " << player->GetName() << "。";
             creature->MonsterWhisper(messageHelp.str().c_str(), player);
             Roll = Roll + 25;
             Losses = 0;
@@ -414,7 +414,7 @@ public:
         if (Pocket < (BetAmount / 2))
         {
             std::ostringstream messageTaunt;
-            messageTaunt << "我可没时间陪小气鬼 " << player->GetName() << "。等你有了再回来 " << bet << " " << MoneyTypeText << "！";
+            messageTaunt << "我可没时间陪小气鬼 " << player->GetName() << "。等您有了再回来 " << bet << " " << MoneyTypeText << "！";
             player->AddAura(228, player);	// Polymorph Chicken
             player->AddAura(5782, player);	// Fear
             creature->MonsterWhisper(messageTaunt.str().c_str(), player);
@@ -434,7 +434,7 @@ public:
             player->CastSpell(player, 47292);
             player->CastSpell(player, 44940);
             messageAction << "骨头都是一卷一卷的 " << Roll << "。";
-            messageNotice << "WOWZERS " << player->GetName() << "!!你中头彩了!这是你的钱包 " << Jackpot << " " << MoneyTypeText << "！";
+            messageNotice << "WOWZERS " << player->GetName() << "!!您中头彩了!这是您的钱包 " << Jackpot << " " << MoneyTypeText << "！";
             creature->MonsterWhisper(messageAction.str().c_str(), player);
             player->GetSession()->SendAreaTriggerMessage("%s", messageNotice.str().c_str());
             CloseGossipMenuFor(player);
@@ -452,7 +452,7 @@ public:
             Losses = 0;
             player->CastSpell(player, 47292);
             messageAction << "骨头都是一卷一卷的 " << Roll << ".";
-            messageNotice << "恭喜 " << player->GetName() << ",你赢了 " << WinAmount << " " << MoneyTypeText << "！";
+            messageNotice << "恭喜 " << player->GetName() << ",您赢了 " << WinAmount << " " << MoneyTypeText << "！";
             creature->MonsterWhisper(messageAction.str().c_str(), player);
             ChatHandler(player->GetSession()).SendSysMessage(messageNotice.str().c_str());
             creature->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
@@ -464,7 +464,7 @@ public:
             player->ModifyMoney(-BetAmount);
             Losses = Losses + 1;
             messageAction << "骨头都是一卷一卷的 " << Roll << ".";
-            messageNotice << "真不走运 " << player->GetName() << ",你失去了 " << WinAmount << " " << MoneyTypeText << "！";
+            messageNotice << "真不走运 " << player->GetName() << ",您失去了 " << WinAmount << " " << MoneyTypeText << "！";
             creature->MonsterWhisper(messageAction.str().c_str(), player);
             ChatHandler(player->GetSession()).SendSysMessage(messageNotice.str().c_str());
             creature->HandleEmoteCommand(EMOTE_ONESHOT_QUESTION);
@@ -517,7 +517,7 @@ public:
                     }
                     case 2:
                     {
-                        me->MonsterSay("来吧!下你的赌注，不要做胆小鬼!", LANG_UNIVERSAL, NULL);
+                        me->MonsterSay("来吧!下您的赌注，不要做胆小鬼!", LANG_UNIVERSAL, NULL);
                         me->HandleEmoteCommand(EMOTE_ONESHOT_CHICKEN);
                         MessageTimer = urand(60000, 180000);
                         break;

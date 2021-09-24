@@ -1,11 +1,11 @@
 -- --------------------------------------------------------------------------------------
---	GAMBLER - 601020
+--	GAMBLER - 190005
 -- --------------------------------------------------------------------------------------
 SET
-@Entry 		:= 601020,
+@Entry 		:= 190005,
 @Model 		:= 7337, -- Goblin Banker
-@Name 		:= "瘦子",
-@Title 		:= "职业赌徒",
+@Name 		:= "性感荷官",
+@Title 		:= "在线发牌",
 @Icon 		:= "LootAll",
 @GossipMenu := 0,
 @MinLevel 	:= 80,
@@ -26,4 +26,4 @@ INSERT INTO creature_template (`entry`, `modelid1`, `name`, `subname`, `IconName
 (@Entry, @Model, @Name, @Title, @Icon, @GossipMenu, @MinLevel, @MaxLevel, @Faction, @NPCFlag, 1, 1.14286, @Scale, @Rank, 1, 2, @Type, @TypeFlags, 3, 1, @FlagsExtra, @AIName, @Script);
 
 DELETE FROM `npc_text` WHERE `ID`=@Entry;
-INSERT INTO `npc_text` (`ID`, `text0_0`) VALUES (@Entry, '嘿，我叫瘦子。 你很幸运知道吗？');
+INSERT INTO `npc_text` (`ID`, `text0_0`) VALUES (@Entry, '嘿，我是发哥。 你很幸运知道吗？');
